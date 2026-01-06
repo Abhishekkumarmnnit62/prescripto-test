@@ -16,11 +16,11 @@ import DoctorDashboard from './pages/Doctor/DoctorDashboard';
 import DoctorProfile from './pages/Doctor/DoctorProfile';
 
 const App = () => {
-  
+
   const { dToken } = useContext(DoctorContext)
   const { aToken } = useContext(AdminContext)
-  
-  return dToken || aToken  ? (
+
+  return dToken || aToken ? (
     <div className='bg-[#F8F9FD]'>
       <ToastContainer />
       <Navbar />
@@ -38,12 +38,11 @@ const App = () => {
         </Routes>
       </div>
     </div>
-
   ) : (
-      <>
-        <ToastContainer />
-        <Login />
-      </>
+    <>
+      <ToastContainer />
+      <Login />
+    </>
   )
 }
 

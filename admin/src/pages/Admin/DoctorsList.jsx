@@ -7,7 +7,6 @@ const DoctorsList = () => {
 
   useEffect(() => {
     if (aToken) {
-      console.log("i am here")
         getAllDoctors()
     }
 }, [aToken])

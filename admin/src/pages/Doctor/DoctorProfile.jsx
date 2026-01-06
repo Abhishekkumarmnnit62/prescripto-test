@@ -6,47 +6,45 @@ import axios from 'axios'
 
 const DoctorProfile = () => {
 
-  const { dToken, profileData, setProfileData, getProfileData } = useContext(DoctorContext)
-  const { currency, backendUrl } = useContext(AppContext)
-  const [isEdit, setIsEdit] = useState(false)
+    const { dToken, profileData, setProfileData, getProfileData } = useContext(DoctorContext)
+    const { currency, backendUrl } = useContext(AppContext)
+    const [isEdit, setIsEdit] = useState(false)
 
+    const updateProfile = async () => {
 
-  const updateProfile = async () => {
-    try{
-      const updateData = {
-        address: profileData.address,
-        fees: profileData.fees,
-        about: profileData.about,
-        available: profileData.available
-      }
+        try {
 
-      const { data } = await axios.post(backendUrl + '/api/doctor/update-profile',updateData,{ headers : { dToken}})
-      // console.log(data)
+            const updateData = {
+                address: profileData.address,
+                fees: profileData.fees,
+                about: profileData.about,
+                available: profileData.available
+            }
 
-      if(data.success){
-        toast.success(data.message)
-        setIsEdit(false)
-        getProfileData()
-      }
-      else{
-        toast.error(data.message)
-      }
+            const { data } = await axios.post(backendUrl + '/api/doctor/update-profile', updateData, { headers: { dToken } })
 
+            if (data.success) {
+                toast.success(data.message)
+                setIsEdit(false)
+                getProfileData()
+            } else {
+                toast.error(data.message)
+            }
+
+            setIsEdit(false)
+
+        } catch (error) {
+            toast.error(error.message)
+            console.log(error)
+        }
 
     }
-    catch(error){
-      toast.error(error.messaage)
-      console.log(error)
-    }
-  }
 
-
-  useEffect(()=>{
-    if(dToken){
-      getProfileData()
-    }
-  },[dToken])
-
+    useEffect(() => {
+        if (dToken) {
+            getProfileData()
+        }
+    }, [dToken])
 
     return profileData && (
         <div>
@@ -78,7 +76,7 @@ const DoctorProfile = () => {
                     </div>
 
                     <p className='text-gray-600 font-medium mt-4'>
-                        Appointment fee: <span className='text-gray-800'>{currency} {isEdit ? <input type='number' onWheel={(e) => e.target.blur()}  onChange={(e) => setProfileData(prev => ({ ...prev, fees: e.target.value }))} value={profileData.fees} /> : profileData.fees}</span>
+                        Appointment fee: <span className='text-gray-800'>{currency} {isEdit ? <input type='number' onChange={(e) => setProfileData(prev => ({ ...prev, fees: e.target.value }))} value={profileData.fees} /> : profileData.fees}</span>
                     </p>
 
                     <div className='flex gap-2 py-2'>

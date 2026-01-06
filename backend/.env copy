@@ -1,0 +1,15 @@
+MONGODB_URI="mongodb+srv://abhishek:abhishek123@cluster0.5jnhe.mongodb.net/newAppPrescriptoTest"
+
+
+
+CURRENCY = "INR"
+JWT_SECRET="abhishekkumar"
+
+# Admin Panel Credentials
+ADMIN_EMAIL = "admin@example.com"
+ADMIN_PASSWORD = "greatstack123"
+
+
+CLOUDINARY_NAME="duxlo6rk5"
+CLOUDINARY_API_KEY="126163332998587"
+CLOUDINARY_SECRET_KEY="h1EEpe7EX3IM1K79B7Im1ryIcmg"
